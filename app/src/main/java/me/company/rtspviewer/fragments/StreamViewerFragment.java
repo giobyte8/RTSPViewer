@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +15,12 @@ import android.widget.VideoView;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
+import me.company.rtspviewer.utils.rtsp.RTSPControl;
+import me.company.rtspviewer.utils.rtsp.RTSPOptionsBackground;
 import me.company.rtspviewer.utils.rtsp.RTSPOptionsCommandTask;
 import rtspviewer.company.me.rtspviewer.R;
 
@@ -57,22 +63,22 @@ public class StreamViewerFragment extends Fragment {
         mediaController.setMediaPlayer(videoView);
 
         // Configure video view to fetch stream
-        /*videoView.setMediaController(mediaController);
+        videoView.setMediaController(mediaController);
         videoView.setVideoURI(liveStreamUri);
-        videoView.start();*/
+        videoView.start();
 
         // Start video on another intent
-        Intent intent = new Intent(Intent.ACTION_VIEW, liveStreamUri);
-        startActivity(intent);
+        //Intent intent = new Intent(Intent.ACTION_VIEW, liveStreamUri);
+        //startActivity(intent);
 
         // Start a background task every 40 secs sending
         // an OPTIONS Request to rtsp server to keep alive the connection
-        //startRTSPOptionsPeriodically(streamUrl);
+        startRTSPOptionsPeriodically(streamUrl);
     }
 
     public void startRTSPOptionsPeriodically(final String targetUri) {
 
-        TimerTask timerTask = new TimerTask() {
+        /*TimerTask timerTask = new TimerTask() {
 
             @Override
             public void run() {
@@ -80,6 +86,40 @@ public class StreamViewerFragment extends Fragment {
                 new RTSPOptionsCommandTask().execute(uris);
             }
         };
-        rtspOptionsCommandTimer.schedule(timerTask, 40000, 40000);
+        rtspOptionsCommandTimer.schedule(timerTask, 1000, 10000);*/
+
+
+        /*final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            @Override
+            public void run() {
+
+                RTSPControl rtspControl = new RTSPControl(targetUri);
+                Log.d("STREAM TASK", "Sending options request");
+                rtspControl.RTSPOptions();
+
+                //Uri[] uris = new Uri[]{Uri.parse(targetUri)};
+                //new RTSPOptionsCommandTask().execute(uris);
+
+                // Program runnable to exec again in 4 seconds
+                handler.postDelayed(this, 4000);
+            }
+        };
+        handler.postDelayed(runnable, 100);*/
+
+        /*ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
+        scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+
+
+                RTSPControl rtspControl = new RTSPControl(targetUri);
+                rtspControl.RTSPOptions();
+            }
+        }, 50, 50, TimeUnit.SECONDS);*/
+
+        RTSPOptionsBackground rtspOptionsBackground = new RTSPOptionsBackground(targetUri);
+        rtspOptionsBackground.start();
     }
 }
