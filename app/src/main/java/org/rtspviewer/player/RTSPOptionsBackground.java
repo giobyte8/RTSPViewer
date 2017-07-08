@@ -1,4 +1,4 @@
-package me.company.rtspviewer.utils.rtsp;
+package org.rtspviewer.player;
 
 import android.util.Log;
 
