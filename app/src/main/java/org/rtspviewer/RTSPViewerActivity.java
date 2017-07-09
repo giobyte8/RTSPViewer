@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import org.rtspviewer.player.ViewerFragment;
+import org.rtspviewer.streams.list.StreamsFragment;
+import org.rtspviewer.streams.list.StreamsPresenter;
 
 /**
  *
@@ -17,9 +18,13 @@ public class RTSPViewerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_rtsp_viewer);
 
+        // Prepare streams fragment and presenter
+        StreamsFragment streamsFragment = new StreamsFragment();
+        new StreamsPresenter(streamsFragment);
+
         // Show player fragment
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new ViewerFragment())
+                .replace(R.id.container, streamsFragment)
                 .commit();
     }
 }

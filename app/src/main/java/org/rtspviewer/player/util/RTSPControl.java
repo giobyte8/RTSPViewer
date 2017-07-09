@@ -1,4 +1,4 @@
-package org.rtspviewer.player;
+package org.rtspviewer.player.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
