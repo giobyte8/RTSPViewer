@@ -11,5 +11,5 @@
     <string name="url">Url</string>
     <string name="error_stream_name">Enter a name with at least 3 characters</string>
     <string name="error_stream_url">Enter a valid rtsp url for this stream</string>
-    <string name="view_stream">Ver stream</string>
+    <string name="view_stream">View stream</string>
 </resources>
