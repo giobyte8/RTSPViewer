@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 
 import org.rtspviewer.R;
 import org.rtspviewer.databinding.FragStreamFormBinding;
@@ -53,6 +54,19 @@ public class StreamFormFragment extends DialogFragment implements StreamFormCont
         super.onDestroy();
 
         mPresenter.destroy();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Window window = getDialog().getWindow();
+        if (window != null) {
+            window.setLayout(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+            );
+        }
     }
 
     @Override
