@@ -1,12 +1,15 @@
 package org.rtspviewer.streams.form;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import org.rtspviewer.R;
 import org.rtspviewer.databinding.FragStreamFormBinding;
@@ -20,6 +23,19 @@ public class StreamFormFragment extends DialogFragment implements StreamFormCont
 
     private StreamFormContract.StreamFormPresenter mPresenter;
     private FragStreamFormBinding viewBinding;
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.requestFeature(Window.FEATURE_NO_TITLE);
+        }
+
+        return dialog;
+    }
 
     @Nullable
     @Override

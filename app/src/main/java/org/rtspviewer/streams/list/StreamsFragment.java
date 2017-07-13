@@ -39,6 +39,7 @@ public class StreamsFragment extends Fragment implements StreamsContract.View {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null) {
             toolbar.setTitle(getString(R.string.streams));
+            toolbar.setDisplayHomeAsUpEnabled(false);
         }
     }
 

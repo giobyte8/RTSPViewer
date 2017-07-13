@@ -4,9 +4,4 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="toolbar" parent="@style/Widget.AppCompat.Toolbar">
-        <item name="titleTextColor">#FFF</item>
-    </style>
-
 </resources>

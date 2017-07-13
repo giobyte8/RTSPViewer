@@ -34,6 +34,7 @@ public class PlayerFragment extends Fragment implements PlayerContract.View {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null) {
             toolbar.setTitle(getString(R.string.view_stream));
+            toolbar.setDisplayHomeAsUpEnabled(true);
         }
     }
 

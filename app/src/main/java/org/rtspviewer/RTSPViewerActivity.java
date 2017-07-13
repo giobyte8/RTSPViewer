@@ -33,6 +33,12 @@ public class RTSPViewerActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        getSupportFragmentManager().popBackStack();
+        return true;
+    }
+
     private void setupToolbar() {
         setSupportActionBar(viewBinding.toolbar);
     }
