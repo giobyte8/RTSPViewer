@@ -72,6 +72,7 @@ public class PlayerFragment extends Fragment implements PlayerContract.View {
     public void playStream(Stream stream) {
         if (stream != null) {
             startStreamingPlayback(stream.getUrl());
+            viewBinding.tvName.setText(stream.getName());
         }
     }
 
