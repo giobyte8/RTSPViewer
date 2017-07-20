@@ -79,11 +79,12 @@ public class PlayerFragment extends Fragment implements PlayerContract.View {
     public void startStreamingPlayback(String streamUrl) {
 
         // Url to fetch stream
-//        String streamUrl = "rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/_definst_/mp4:bigbuckbunnyiphone_400.mp4";
+//        streamUrl = "rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/_definst_/mp4:bigbuckbunnyiphone_400.mp4";
         Uri liveStreamUri = Uri.parse(streamUrl);
 
         // Configure media controller
-        MediaController mediaController = new MediaController(getActivity().getApplicationContext());
+        MediaController mediaController = new MediaController(getContext());
+        mediaController.setAnchorView(viewBinding.vvPlayer);
         mediaController.setMediaPlayer(viewBinding.vvPlayer);
 
         // Configure video view to fetch stream
@@ -92,12 +93,13 @@ public class PlayerFragment extends Fragment implements PlayerContract.View {
         viewBinding.vvPlayer.start();
 
         // Start video on another intent
-        //Intent intent = new Intent(Intent.ACTION_VIEW, liveStreamUri);
-        //startActivity(intent);
+        // Intent intent = new Intent(Intent.ACTION_VIEW, liveStreamUri);
+        // startActivity(intent);
 
         // Start a background task every 40 secs sending
         // an OPTIONS Request to rtsp server to keep alive the connection
         startRTSPOptionsPeriodically(streamUrl);
+
     }
 
     public void startRTSPOptionsPeriodically(final String targetUri) {

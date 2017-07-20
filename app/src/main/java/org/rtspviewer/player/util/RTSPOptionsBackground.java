@@ -3,6 +3,7 @@ package org.rtspviewer.player.util;
 import android.util.Log;
 
 /**
+ *
  * Created by giovanni on 11/5/15.
  */
 public class RTSPOptionsBackground extends Thread {
@@ -16,10 +17,9 @@ public class RTSPOptionsBackground extends Thread {
 
     @Override
     public void run() {
-
-        while (true) {
+        while(true) {
             try {
-                this.sleep(5000);
+                sleep(5000);
                 Log.d("THREAD", "Background task");
                 if(rtspControl == null) {
                     this.rtspControl = new RTSPControl(targetUrl);
@@ -30,7 +30,7 @@ public class RTSPOptionsBackground extends Thread {
                 }
             }
             catch (Exception err) {
-
+                Log.e(getClass().getName(), "Ex: " + err.getMessage());
             }
         }
     }
