@@ -1,8 +1,11 @@
 # RTSP Viewer
 Stores and play a collection of RTSP streams
 
-<img src="./screenshots/streams.png" width="250px" />
-<img src="./screenshots/player.png" width="250px" />
+<p align="center">
+    <img src="./screenshots/streams.png" width="250px" />
+    <img src="./screenshots/player.png" width="250px" />
+</p>
+
 
 ### For developers
 If you want to play RTSP streams in your own app, you should check the `PlayerFragment`.
