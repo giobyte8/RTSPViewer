@@ -1,8 +1,9 @@
 # RTSP Viewer
 Stores and play a collection of RTSP streams
 
-<p align="center">
+<p>
     <img src="./screenshots/streams.png" width="250px" />
+    <span>&nbsp;&nbsp;&nbsp;</span>
     <img src="./screenshots/player.png" width="250px" />
 </p>
 
